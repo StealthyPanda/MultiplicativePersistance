@@ -13,7 +13,13 @@ def ScreenDisplay():
 		else: dots += '.'
 
 def TheActualExecution():
-	CalcAndWriteCSV()
+	with open('TheOneWereOnRightNow.txt', 'r') as file:
+		TheOneWereOnRightNow = int(file.read())
+	while True:
+		CalcAndWriteCSV(TheOneWereOnRightNow)
+		TheOneWereOnRightNow += 1
+		with open('TheOneWereOnRightNow.txt', 'w') as file:
+			file.write(str(TheOneWereOnRightNow))
 
 
 _thread.start_new_thread(ScreenDisplay, ())
